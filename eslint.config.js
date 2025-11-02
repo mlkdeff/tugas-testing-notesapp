@@ -1,7 +1,6 @@
 const { FlatCompat } = require('@eslint/eslintrc');
 const js = require('@eslint/js');
 
-// Initialize with the necessary configurations
 const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
   eslintrc: true
@@ -10,10 +9,13 @@ const compat = new FlatCompat({
 module.exports = [
   js.configs.recommended,
   ...compat.config({
-    env: { 
-      es2021: true, 
-      node: true, 
-      jest: true 
+    env: {
+      es2021: true,
+      node: true,
+      jest: true
+    },
+    globals: {
+      __ENV: 'readonly' // 👈 tambahkan baris ini
     },
     rules: {
       "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
